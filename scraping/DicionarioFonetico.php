@@ -45,7 +45,7 @@ class DicionarioFonetico implements Scraping
                 $tabelaPag = $htmlPagina->find('table[id="rollovertable"]');
                 $categoria = $tabelaPag[0]->getElementsByTagName('td');
                 $indexCategoria = 1;
-                for($j = 0; $j < 20; $j++)
+                for($j = 0; $j < 1; $j++)
                 {
                     if (is_null($palavrasPag[$j]))
                     {
@@ -65,9 +65,9 @@ class DicionarioFonetico implements Scraping
                 
                 $i++;
             }
-            //$this->generateJson("dicionario_".$this->letras[$letra]);
+            $this->generateJson("dicionario_".$this->letras[$letra]);
         }
-        $this->generateJson("dicionario");
+        //$this->generateJson("dicionario");
         //Testando pra ver se o array_push funcionou
         echo ($this->dicionario[10]['Palavra']).' -> '.($this->dicionario[10]['Categoria']).' -> '.($this->dicionario[10]['Fonetica']);
         echo "<h4>Scraping Realizado</h4>";
@@ -75,7 +75,6 @@ class DicionarioFonetico implements Scraping
         //unset($this->dicionario);
         
     }
-
 
     public function generateJson($name)
     {
