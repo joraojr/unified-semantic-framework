@@ -104,6 +104,7 @@ class DicionarioFonetico implements Scraping
         //open or create the file
         $handle = fopen( __DIR__ . '/../csv/DicionarioFonetico/'.$filename, 'w+');
 
+        
         foreach($this->dicionario as $linha)
         {
             //write the data into the file
