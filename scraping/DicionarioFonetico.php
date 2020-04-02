@@ -31,15 +31,16 @@ class DicionarioFonetico implements Scraping
         //Tenho que usar o getElementByTagName para percorrer por todos os tds da tabela
 
         //Exemplo: para a letra X tem 77 resultados, cada página vai de 20 em 20, o que dá 4 páginas:
-        //for($letra = 0; $letra < 26; $letra++)
-        foreach($this->letras as $letra)
+        //foreach($this->letras as $letra)
+
+        for($letra = 0; $letra < 1; $letra++)
         {
             $i=0;
             $flag = true;
             $cont = 0;
             while($flag) {
                 $numeroAtual = $i*20;
-                $htmlPagina = file_get_html($urlBase.$letra."&start=".$numeroAtual);
+                $htmlPagina = file_get_html($urlBase.$this->letras[$letra]."&start=".$numeroAtual);
                 $palavrasPag = $htmlPagina->find('td[title="Palavra"]');
                 $foneticasPag = $htmlPagina->find('td[title="Fonética"]');
                 $tabelaPag = $htmlPagina->find('table[id="rollovertable"]');
@@ -101,7 +102,7 @@ class DicionarioFonetico implements Scraping
         $filename = $name.'.csv';
 
         //open or create the file
-        $handle = fopen( __DIR__ . '/../json/DicionarioFonetico/'.$filename, 'w+');
+        $handle = fopen( __DIR__ . '/../csv/DicionarioFonetico/'.$filename, 'w+');
 
         foreach($this->dicionario as $linha)
         {
