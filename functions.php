@@ -199,18 +199,29 @@ function whatSyllableTonic($str)
     $syl = 0;
     $tonic = 0;
     $found = false;
+    $occored = false;
     for($i = 0; $i < $limit; $i++)
     {
+        //Verifica se é o caso de terem dois fonemas e já ter passado por um, se for, para de contar
+        if((in_array(" ", $letters)))
+        {
+            $occored = true;
+        }
         $letters = str_split_unicode($str[$i]);
         //$size = count($letters);
         if((in_array("ˈ", $letters))) 
         {
-            $syl = $i;
             $found = true;
+            $cont++;
         }
+         
         if($found === true)
         {
-            $tonic++;
+            if(!$occored)
+            {
+                $tonic++;
+            }
+            
         }
     }
     return $tonic;
@@ -243,8 +254,28 @@ function setTonic($filename)
             }
             elseif ($tonic > 3)
             {
-                echo "Há mais de uma possibilidade <br />\n";
+                echo "Classificação tônica: Proparoxítona <br />\n";
             }
+        }
+        fclose($handle);
+    }
+}
+
+function sayNoTonic($filename)
+{
+    if (( $handle = fopen( __DIR__ . '/csv/DicionarioFonetico/'.$filename, "r")) !== FALSE) 
+    {
+        $row = 1;
+        while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) 
+        {
+            $syllables = explode(".", $data[2]);
+            $tonic = whatSyllableTonic($syllables);
+            if ($tonic === 0)
+            {
+                echo "Palavra: ".$data[0]."<br />\n";
+                echo "Não há fonema  na linha ".$row."<br />\n";
+            }
+            $row++;
         }
         fclose($handle);
     }
