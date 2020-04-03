@@ -45,12 +45,27 @@ function accented_to_normal($str)
     return $str;
 }
 
+function howManySyllables($filename)
+{
+    if (( $handle = fopen( __DIR__ . '/csv/DicionarioFonetico/'.$filename, "r")) !== FALSE) 
+    {
+        while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) 
+        {
+            $silabas = explode("·", $data[0]);
+            $num = count($silabas);
+            echo "Quantidade de sílabas: ".$num."<br />\n";   
+        }
+        fclose($handle);
+    }
+}
+
 function setCanonic($filename)
 {
     $cont = 0;
-    if (( $handle = fopen( __DIR__ . '/csv/DicionarioFonetico/'.$filename, "r")) !== FALSE) {
-        while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
-            
+    if (( $handle = fopen( __DIR__ . '/csv/DicionarioFonetico/'.$filename, "r")) !== FALSE) 
+    {
+        while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) 
+        {
             if ($cont === 2)
             {
                 $silabas = explode("·", $data[0]);
@@ -92,6 +107,6 @@ function setCanonic($filename)
 
 //checkVowel("A");
 echo "testando função: <br />\n";
-setCanonic($file);
+howManySyllables($file);
 
 ?>
