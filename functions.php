@@ -1,6 +1,6 @@
 <?php
 
-$file = 'dicionario_z.csv';
+$file = 'dicionario_p.csv';
 
 function printCsv($filename)
 {
@@ -16,7 +16,8 @@ function printCsv($filename)
         fclose($handle);
     }
 }
-
+//\w*[áéíóúã]\w*
+//\w+[ul]$
 //split com caracter especial
 function str_split_unicode($str, $l = 0) {
     if ($l > 0) {
@@ -56,6 +57,17 @@ function accented_to_normal($str)
     $str = strtolower($str);
     $str = strtr($str, $transLetters);
     return $str;
+}
+
+function is_accented($str)
+{
+    $str = strtr($str, array('ç' => 'c'));
+    if (ctype_alpha($str)) {
+        return false;
+    } 
+    else {
+        return true;
+    }
 }
 
 function howManySyllables($str)
@@ -195,33 +207,58 @@ function setCCedilha($filename)
 
 function whatSyllableTonic($str)
 {
-    $limit = count($str);
+    $syllables = explode("·", $str[0]);
+    $phones = explode(".", $str[2]);
+    $qtdSyllables = count($syllables);
+    $qtdPhones = count($phones);
     $syl = 0;
     $tonic = 0;
     $found = false;
     $occored = false;
-    for($i = 0; $i < $limit; $i++)
+    //Verifica se é monossílaba
+    if ($qtdSyllables === 1)
     {
-        //Verifica se é o caso de terem dois fonemas e já ter passado por um, se for, para de contar
-        if((in_array(" ", $letters)))
+        $tonic = 1;
+    }
+    else
+    {
+        for($i = 0; $i < $qtdSyllables; $i++)
         {
-            $occored = true;
-        }
-        $letters = str_split_unicode($str[$i]);
-        //$size = count($letters);
-        if((in_array("ˈ", $letters))) 
-        {
-            $found = true;
-            $cont++;
-        }
-         
-        if($found === true)
-        {
-            if(!$occored)
+            if((is_accented($syllables[$i])))
             {
-                $tonic++;
+                $found = true;
             }
             
+            if($found === true)
+            {
+                $tonic++;
+                
+            }
+        }
+        if($tonic === 0)
+        {
+            for($i = 0; $i < $qtdPhones; $i++)
+            {
+                $letters = str_split_unicode($phones[$i]);
+                //Verifica se é o caso de terem dois fonemas e já ter passado por um, se for, para de contar
+                if((in_array(" ", $letters)))
+                {
+                    $occored = true;
+                }
+                if((in_array("ˈ", $letters))) 
+                {
+                    $found = true;
+                }
+                
+                if($found === true)
+                {
+                    if(!$occored)
+                    {
+                        $tonic++;
+                    }
+                    
+                }
+            }
         }
     }
     return $tonic;
@@ -233,9 +270,8 @@ function setTonic($filename)
     {
         while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) 
         {
-            $syllables = explode(".", $data[2]);
-            $tonic = whatSyllableTonic($syllables);
-            echo "Fonema: ".$data[2]."<br />\n";
+            $tonic = whatSyllableTonic($data);
+            echo "Palavra: ".$data[0].", Fonema: ".$data[2]."<br />\n";
             if($tonic === 3)
             {
                 echo "Classificação tônica: Proparoxítona <br />\n";
@@ -261,6 +297,7 @@ function setTonic($filename)
     }
 }
 
+//Diz em quais linhas estão as palavras que não tem fonemas para que eu possa excluí-las
 function sayNoTonic($filename)
 {
     if (( $handle = fopen( __DIR__ . '/csv/DicionarioFonetico/'.$filename, "r")) !== FALSE) 
@@ -268,8 +305,7 @@ function sayNoTonic($filename)
         $row = 1;
         while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) 
         {
-            $syllables = explode(".", $data[2]);
-            $tonic = whatSyllableTonic($syllables);
+            $tonic = whatSyllableTonic($data);
             if ($tonic === 0)
             {
                 echo "Palavra: ".$data[0]."<br />\n";
@@ -329,13 +365,8 @@ function setCanonic($filename)
 
 echo "testando função: <br />\n";
 
-/*
-$test = array("za", "bˈũ", "bə");
-$pos = whatSyllableTonic($test);
+//sayNoTonic($file);
 
-echo "Posicao da sílaba tônica: ".($pos+1);
-*/
 setTonic($file);
-
 
 ?>
