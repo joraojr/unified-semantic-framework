@@ -38,22 +38,6 @@ class PortalMJ implements Scraping{
     private $situacao;
     private $data_localizacao;
 
-	public function getIdade($string){
-
-		$tamanho = strlen($string);
-
-		for ($i = 0; $i < $tamanho; $i++){
-			if(is_numeric($string[$i]) && ($string[$i] != '0')){
-				break;
-			}	
-		}
-
-		$idade = substr($string, $i, 2);
-
-		return $idade;
-
-	}
-
     public function sendPeople($driver, $place){
 
         $this->cidade = $this->local_desaparecimento = $place;
@@ -156,51 +140,6 @@ class PortalMJ implements Scraping{
 
         $driver->quit();
 
-	}
-
-	public function saveData($data){
-
-		$this->imagem = $data["Foto"];
-		$this->fonte = $data["Fonte"];
-		$this->sexo = $data["Sexo:"];
-		
-		if(array_key_exists("Data de nascimento:",$data)){
-			$this->data_nascimento = $data["Data de nascimento:"];
-		}
-
-		$this->data_desaparecimento = $data["Data do desaparecimento:"];
-		
-		$this->local_desaparecimento = $data["Local do desaparecimento:"];
-		
-		if(array_key_exists("Altura:", $data)){
-			$this->altura = $data["Altura:"];
-		}
-		if(array_key_exists("Peso:", $data)){
-			$this->peso = $data["Peso:"];
-		}
-		if(array_key_exists("Cor do olhos:", $data)){
-			$this->cor_olho = $data["Cor do olhos:"];
-		}
-		if(array_key_exists("Cor do cabelo:", $data)){
-			$this->cor_cabelo = $data["Cor do cabelo:"];
-		}
-		if(array_key_exists("Raça:", $data)){
-			$this->cor_pele = $data["Raça:"];
-		}
-		if(array_key_exists("Circunstância do desaparecimento:", $data)){
-			$this->circunstancia_desaparecimento = $data["Circunstância do desaparecimento:"];
-		}		
-		
-		$this->situacao = "Desaparecida";
-		$this->estado = "PA";
-		$this->nome = $data["Nome"];
-		$this->idade = $data["Idade"];
-
-		if(array_key_exists("Nome do Contato:", $data)){
-			$this->dados_adicionais = "Nome do Contato: " . trim($data["Nome do Contato:"]) . " Telefone para contato: ".
-			trim($data["Telefone para contato:"]) . " E-mail para contato: ". trim($data["E-mail para contato:"]) ;
-		}
-		
 	}
 
 	// As some registers, data, doesnt have the same pattern or fields
