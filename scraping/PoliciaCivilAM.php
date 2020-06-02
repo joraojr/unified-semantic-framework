@@ -17,11 +17,11 @@ class PoliciaCivilAM implements Scraping{
 	private $idade;
 	private $sexo;
 	private $local_desaparecimento;
-    private $dt_nascimento;
+    private $data_nascimento;
 	private $imagem;
 	private $cidade;
     private $estado;
-    private $dt_desaparecimento;
+    private $data_desaparecimento;
     private $fonte;
     private $detalhes;
     private $situacao;
@@ -104,7 +104,7 @@ class PoliciaCivilAM implements Scraping{
 		$this->fonte = $data["Fonte"];
 		
 		if(array_key_exists("Data de Nascimento:",$data)){
-			$this->dt_nascimento = $data["Data de Nascimento:"];
+			$this->data_nascimento = $data["Data de Nascimento:"];
 		}
 
 		if(array_key_exists("Desaparecimento:",$data)){
@@ -133,7 +133,7 @@ class PoliciaCivilAM implements Scraping{
 		$this->imagem = null;
 		$this->fonte = null;
 		$this->sexo = null;
-		$this->dt_nascimento = null;
+		$this->data_nascimento = null;
 		$this->data_desaparecimento = null;
 		$this->local_desaparecimento = null;
 		$this->situacao = null;
@@ -153,7 +153,7 @@ class PoliciaCivilAM implements Scraping{
 				array('idade' => $this->idade),
 				array('sexo' => $this->sexo),
 				array('local_desaparecimento' => $this->local_desaparecimento),
-				array('dt_nascimento' => $this->dt_nascimento),
+				array('dt_nascimento' => $this->data_nascimento),
                 array('dt_desaparecimento' => $this->data_desaparecimento),
                 array('cidade' => $this->cidade),
                 array('estado' => $this->estado),

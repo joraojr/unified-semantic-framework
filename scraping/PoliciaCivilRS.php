@@ -17,11 +17,11 @@ class PoliciaCivilRS implements Scraping{
 	private $idade;
 	private $sexo;
 	private $local_desaparecimento;
-    private $dt_nascimento;
+    private $data_nascimento;
 	private $imagem;
 	private $cidade;
     private $estado;
-    private $dt_desaparecimento;
+    private $data_desaparecimento;
     private $fonte;
     private $circunstancia_desaparecimento;
     private $situacao;
@@ -77,8 +77,8 @@ class PoliciaCivilRS implements Scraping{
 		$this->imagem = $data["Foto"];
 		$this->fonte = $data["Fonte"];
 		
-		$this->dt_nascimento = $data["Nascimento"];
-		$this->dt_desaparecimento = $data["Desaparecimento"];
+		$this->data_nascimento = $data["Nascimento"];
+		$this->data_desaparecimento = $data["Desaparecimento"];
 		$this->local_desaparecimento = $data["Local"];		
 		
 		$this->cidade = $data["Local"];
@@ -95,7 +95,7 @@ class PoliciaCivilRS implements Scraping{
 
 		$this->imagem = null;
 		$this->fonte = null;
-		$this->dt_nascimento = null;
+		$this->data_nascimento = null;
 		$this->data_desaparecimento = null;
 		$this->local_desaparecimento = null;
 		$this->cidade = null;
@@ -112,8 +112,8 @@ class PoliciaCivilRS implements Scraping{
 				array('idade' => $this->idade),
 				array('sexo' => $this->sexo),
 				array('local_desaparecimento' => $this->local_desaparecimento),
-				array('dt_nascimento' => $this->dt_nascimento),
-                array('dt_desaparecimento' => $this->dt_desaparecimento),
+				array('dt_nascimento' => $this->data_nascimento),
+                array('dt_desaparecimento' => $this->data_desaparecimento),
                 array('cidade' => $this->cidade),
                 array('estado' => $this->estado),
                 array('imagem' => $this->imagem),

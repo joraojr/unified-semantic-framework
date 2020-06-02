@@ -9,11 +9,11 @@ require_once __DIR__.'/../Controller/../scraping/Scraping.php';
 class PoliciaMilitarSC implements Scraping
 {
     private $nome;
-    private $dt_nascimento;
+    private $data_nascimento;
     private $imagem;
     private $cidade;
     private $estado;
-    private $dt_desaparecimento;
+    private $data_desaparecimento;
     private $fonte;
     private $circunstancia_desaparecimento;
     private $situacao;
@@ -102,7 +102,7 @@ class PoliciaMilitarSC implements Scraping
             $this->estado = substr($registro[2], $separador+1);
         }
 
-        $this->dt_desaparecimento = $registro[3];
+        $this->data_desaparecimento = $registro[3];
 
         $this->situacao = $registro[4];
 
@@ -124,11 +124,11 @@ class PoliciaMilitarSC implements Scraping
         }
 
         if (strtolower($information[0]) == "data de nascimento") {
-            $this->dt_nascimento = $information[1];
+            $this->data_nascimento = $information[1];
         }
 
         if (strtolower($information[0]) == "desaparecido em") {
-            $this->dt_desaparecimento = $information[1];
+            $this->data_desaparecimento = $information[1];
         }
 
         if (strtolower($information[0]) == "estado onde reside") {
@@ -150,8 +150,8 @@ class PoliciaMilitarSC implements Scraping
             'name' => 'PoliciaMilitarSC',
             'attributes' => array(
                 array('nome' => $this->nome),
-                array('dt_nascimento' => $this->dt_nascimento),
-                array('dt_desaparecimento' => $this->dt_desaparecimento),
+                array('dt_nascimento' => $this->data_nascimento),
+                array('dt_desaparecimento' => $this->data_desaparecimento),
                 array('cidade' => $this->cidade),
                 array('estado' => $this->estado),
                 array('imagem' => $this->imagem),
