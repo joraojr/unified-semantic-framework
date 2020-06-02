@@ -32,7 +32,7 @@ class PoliciaCivilAM implements Scraping{
 
 		$url ="http://www.policiacivil.am.gov.br/desaparecidos/pag/";
 
-        for ($i = 1; $i <= 1; $i++) {
+        for ($i = 1; $i <= 36; $i++) {
 
             $page = $url.$i;
 			$html = file_get_html($page);
