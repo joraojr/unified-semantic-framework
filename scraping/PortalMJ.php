@@ -51,7 +51,7 @@ class PortalMJ implements Scraping{
         $this->altura = $driver->findElement(WebDriverBy::xpath("//span[@id='lblAltura']"))->getText();
         $this->peso = $driver->findElement(WebDriverBy::xpath("//span[@id='lblPeso']"))->getText();
         $this->cor_olho = $driver->findElement(WebDriverBy::xpath("//span[@id='lblCorOlhos']"))->getText();
-        $this->cor_cabelo = $driver->findElement(WebDriverBy::xpath("//span[@id='lblCorOlhos']"))->getText();
+        $this->cor_cabelo = $driver->findElement(WebDriverBy::xpath("//span[@id='lblCorCabelo']"))->getText();
         $this->pele = $driver->findElement(WebDriverBy::xpath("//span[@id='lblRaca']"))->getText();
         $this->circunstancia_desaparecimento = $driver->findElement(WebDriverBy::xpath("//span[@id='lblObservacao']"))->getText();
         $this->data_localizacao = $driver->findElement(WebDriverBy::xpath("//span[@id='lblDataLocalizacao']"))->getText();
