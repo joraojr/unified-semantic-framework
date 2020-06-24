@@ -22,11 +22,11 @@ class DATAPoliciaCivilPA implements Scraping{
 	private $cor_olho;
 	private $cor_cabelo;
 	private $cor_pele;
-    private $dt_nascimento;
+    private $data_nascimento;
 	private $imagem;
 	private $cidade;
     private $estado;
-    private $dt_desaparecimento;
+    private $data_desaparecimento;
     private $fonte;
     private $circunstancia_desaparecimento;
     private $situacao;
@@ -111,7 +111,7 @@ class DATAPoliciaCivilPA implements Scraping{
 		$this->sexo = $data["Sexo:"];
 		
 		if(array_key_exists("Data de nascimento:",$data)){
-			$this->dt_nascimento = $data["Data de nascimento:"];
+			$this->data_nascimento = $data["Data de nascimento:"];
 		}
 
 		$this->data_desaparecimento = $data["Data do desaparecimento:"];
@@ -157,7 +157,7 @@ class DATAPoliciaCivilPA implements Scraping{
 		$this->imagem = null;
 		$this->fonte = null;
 		$this->sexo = null;
-		$this->dt_nascimento = null;
+		$this->data_nascimento = null;
 		$this->data_desaparecimento = null;
 		$this->local_desaparecimento = null;
 		$this->altura = null;
@@ -187,7 +187,7 @@ class DATAPoliciaCivilPA implements Scraping{
 				array('cor_olho' => $this->cor_olho),
 				array('cor_cabelo' => $this->cor_cabelo),
 				array('pele' => $this->cor_pele),
-				array('dt_nascimento' => $this->dt_nascimento),
+				array('dt_nascimento' => $this->data_nascimento),
                 array('dt_desaparecimento' => $this->data_desaparecimento),
                 array('cidade' => $this->cidade),
                 array('estado' => $this->estado),

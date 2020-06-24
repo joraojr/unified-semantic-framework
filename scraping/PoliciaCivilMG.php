@@ -16,12 +16,12 @@ class PoliciaCivilMG implements Scraping{
 	private $nome;
 	private $idade;
 	private $sexo;
-    private $dt_nascimento;
+    private $data_nascimento;
 	private $cidade;
     private $estado;
     private $imagem;
     private $local_desaparecimento;
-    private $dt_desaparecimento;
+    private $data_desaparecimento;
     private $fonte;
 	private $situacao;
 	private $idadeDesaparecimento;
@@ -83,7 +83,7 @@ class PoliciaCivilMG implements Scraping{
 		}
 
 		if(array_key_exists("Data de Nascimento",$data)){
-			$this->dt_nascimento = $data["Data de Nascimento"];
+			$this->data_nascimento = $data["Data de Nascimento"];
 		}
 
 		if(array_key_exists("Data do desaparecimento",$data)){
@@ -108,7 +108,7 @@ class PoliciaCivilMG implements Scraping{
 		$this->imagem = null;
 		$this->fonte = null;
 		$this->sexo = null;
-		$this->dt_nascimento = null;
+		$this->data_nascimento = null;
 		$this->data_desaparecimento = null;
 		$this->local_desaparecimento = null;
 		$this->idadeDesaparecimento = null;
@@ -128,8 +128,8 @@ class PoliciaCivilMG implements Scraping{
 				array('idade' => $this->idade),
 				array('sexo' => $this->sexo),
 				array('local_desaparecimento' => $this->local_desaparecimento),
-				array('dt_nascimento' => $this->dt_nascimento),
-                array('dt_desaparecimento' => $this->dt_desaparecimento),
+				array('dt_nascimento' => $this->data_nascimento),
+                array('dt_desaparecimento' => $this->data_desaparecimento),
                 array('cidade' => $this->cidade),
                 array('estado' => $this->estado),
                 array('imagem' => $this->imagem),

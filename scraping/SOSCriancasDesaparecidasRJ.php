@@ -19,10 +19,10 @@ class SOSCriancasDesaparecidasRJ implements Scraping{
 	private $cor_olho;
     private $cor_cabelo;
 	private $cor_pele;
-    private $dt_nascimento;
+    private $data_nascimento;
 	private $imagem;
     private $estado;
-    private $dt_desaparecimento;
+    private $data_desaparecimento;
     private $fonte;
     private $situacao;
     private $descricao_fisica;
@@ -123,8 +123,8 @@ class SOSCriancasDesaparecidasRJ implements Scraping{
         $this->imagem = "http://www.soscriancasdesaparecidas.rj.gov.br/". $img;
         $this->nome = str_replace('&nbsp;              ',"",$data[0]);
         $this->dados_adicionais = str_replace('</br>',"",$data[1]." ".$data[2]." ".$data[3]);
-        $this->dt_nascimento = str_replace('</br>',"",str_replace('Data de Nascimento: ',"",$data[4]));
-        $this->dt_desaparecimento = str_replace('</br>',"",str_replace('Data de Desaparecimento: ',"",$data[5]));
+        $this->data_nascimento = str_replace('</br>',"",str_replace('Data de Nascimento: ',"",$data[4]));
+        $this->data_desaparecimento = str_replace('</br>',"",str_replace('Data de Desaparecimento: ',"",$data[5]));
         $this->cor_pele = str_replace('</br>',"",str_replace('Cor da Pele:',"",$data[9]));
         $this->cor_cabelo = str_replace('</br>',"",str_replace('Cor do Cabelo:',"",$data[11]));
         $this->cor_olho = str_replace('</br>',"",str_replace('Cor dos Olhos:',"",$data[12]));
@@ -142,8 +142,8 @@ class SOSCriancasDesaparecidasRJ implements Scraping{
 		$this->imagem = null;
 		$this->fonte = null;
 		$this->sexo = null;
-		$this->dt_nascimento = null;
-		$this->dt_desaparecimento = null;
+		$this->data_nascimento = null;
+		$this->data_desaparecimento = null;
 		$this->cor_olho = null;
 		$this->cor_cabelo = null;
 		$this->cor_pele = null;
@@ -166,8 +166,8 @@ class SOSCriancasDesaparecidasRJ implements Scraping{
 				array('cor_olho' => $this->cor_olho),
 				array('cor_cabelo' => $this->cor_cabelo),
 				array('pele' => $this->cor_pele),
-				array('dt_nascimento' => $this->dt_nascimento),
-                array('dt_desaparecimento' => $this->dt_desaparecimento),
+				array('dt_nascimento' => $this->data_nascimento),
+                array('dt_desaparecimento' => $this->data_desaparecimento),
                 array('estado' => $this->estado),
                 array('imagem' => $this->imagem),
                 array('fonte' => $this->fonte),
