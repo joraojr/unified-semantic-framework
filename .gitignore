@@ -3,6 +3,9 @@ exportPeople*
 importPeople*
 /json/**/*.json
 
+#composer - selenium
+/scripts 
+
 #not ignore
 !json/**/config.json
 
