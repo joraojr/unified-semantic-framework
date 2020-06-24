@@ -1,6 +1,0 @@
-{
-    "require": {
-        "applitools/eyes.sdk.php": "^1.3",
-        "php-webdriver/webdriver": "^1.8"
-    }
-}
