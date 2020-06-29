@@ -1,0 +1,132 @@
+{
+    "name": "desaparecidosdobrasil",
+    "attributes": [
+       {
+          "name": "nome",
+          "task": "LowerCaseNormalizerTask"
+       },
+       {
+          "name": "sexo",
+          "task": "GenderTask"
+       },
+       {
+          "name": "cidade",
+          "task": "CityTask"
+       },
+       {
+          "name": "cidade_uri",
+          "task": "CityPrepareTask"
+       },
+       {
+          "name": "apelido",
+          "task": "LowerCaseNormalizerTask"
+       },
+       {
+          "name": "dt_nascimento",
+          "task": "LowerCaseNormalizerTask"
+       },
+       {
+          "name": "imagem",
+          "task": "LowerCaseNormalizerTask"
+       },
+       {
+          "name": "idade",
+          "task": "AgeTask"
+       },
+       {
+          "name": "estado",
+          "task": "LowerCaseNormalizerTask"
+       },
+       {
+          "name": "altura",
+          "task": "LowerCaseNormalizerTask"
+       },
+       {
+          "name": "peso",
+          "task": "LowerCaseNormalizerTask"
+       },
+       {
+          "name": "pele",
+          "task": "LowerCaseNormalizerTask"
+       },
+       {
+          "name": "cor_cabelo",
+          "task": "LowerCaseNormalizerTask"
+       },
+       {
+          "name": "cor_olho",
+          "task": "LowerCaseNormalizerTask"
+       },
+       {
+          "name": "mais_caracteristicas",
+          "task": "LowerCaseNormalizerTask"
+       },
+       {
+          "name": "dt_desaparecimento",
+          "task": "LowerCaseNormalizerTask"
+       },
+       {
+          "name": "local_desaparecimento",
+          "task": "LowerCaseNormalizerTask"
+       },
+       {
+          "name": "circunstancia_desaparecimento",
+          "task": "LowerCaseNormalizerTask"
+       },
+       {
+          "name": "dados_adicionais",
+          "task": "LowerCaseNormalizerTask"
+       },
+       {
+          "name": "situacao",
+          "task": "LowerCaseNormalizerTask"
+       },
+       {
+          "name": "fonte",
+          "task": "ReturnAttributeTask"
+       },
+       {
+          "name": "boletimDeOcorrecia",
+          "task": "ReturnAttributeTask"
+       },
+       {
+          "name": "data_localizacao",
+          "task": "ReturnAttributeTask"
+       },
+       {
+          "name": "dt_desaparecimento",
+          "task": "ReturnAttributeTask"
+       }
+    ],
+    "task": [
+       {
+          "id": "GenderTask",
+          "do": "LowerCaseNormalizerTask"
+       },
+       {
+          "id": "AgeTask",
+          "do": "LowerCaseNormalizerTask"
+       },
+       {
+          "id": "CityTask",
+          "do": "DBPediaSpotlightAnnotationTask",
+          "afterClass" : "LowerCaseNormalizerTask"
+       },
+       {
+          "id": "CityPrepareTask",
+          "do": "CityCanonicaNameTask",
+          "afterClass" : "LowerCaseNormalizerTask"
+       }
+    ],
+    "methods": [
+      {
+         "name": "GetDtNascimentoByIdadeMethod"
+      },
+      {
+         "name": "GetIdadeByDtNascimentoMethod"
+      },
+      {
+         "name": "IBGELinearRegressionMethod"
+      }
+    ]
+ }
